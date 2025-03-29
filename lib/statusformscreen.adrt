@@ -1,0 +1,112 @@
+import 'package:flutter/material.dart';
+
+class StatusForm extends StatelessWidget {
+  final String status; // "pending" or "complete"
+
+  StatusForm({required this.status});
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      child: status == 'pending' ? _buildPendingForm() : _buildCompleteForm(),
+    );
+  }
+
+  Widget _buildPendingForm() {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        key: ValueKey('pending'),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Pending Status', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          SizedBox(height: 16),
+          _buildTextField('Name'),
+          _buildLocationField(),
+          _buildTextField('Date', isDate: true),
+          _buildTextField('Category'),
+          _buildTextField('Description', maxLines: 3),
+          SizedBox(height: 16),
+          ElevatedButton(onPressed: () {}, child: Text('Submit')),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCompleteForm() {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black26,
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        key: ValueKey('complete'),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Complete Status', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          SizedBox(height: 16),
+          _buildTextField('Name'),
+          _buildLocationField(),
+          _buildTextField('Date', isDate: true),
+          _buildTextField('Category'),
+          _buildTextField('Description', maxLines: 3),
+          SizedBox(height: 16),
+          ElevatedButton(onPressed: () {}, child: Text('Submit')),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTextField(String label, {bool isDate = false, int maxLines = 1}) {
+    return TextField(
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(),
+      ),
+      maxLines: maxLines,
+      readOnly: isDate, // Make it read-only if it's a date field
+      onTap: isDate ? () async {
+        // Implement date picker logic here
+        DateTime? pickedDate = await showDatePicker(
+          context: context,
+          initialDate: DateTime.now(),
+          firstDate: DateTime(2000),
+          lastDate: DateTime(2101),
+        );
+        if (pickedDate != null) {
+          // Handle the selected date
+        }
+      } : null,
+    );
+  }
+
+  Widget _buildLocationField() {
+    return Row(
+      children: [
+        Expanded(child: _buildTextField('Latitude')),
+        SizedBox(width: 16),
+        Expanded(child: _buildTextField('Longitude')),
+      ],
+    );
+  }
+}
