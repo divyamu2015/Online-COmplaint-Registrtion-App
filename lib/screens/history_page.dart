@@ -78,7 +78,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 onPressed: () {
                   Navigator.pushReplacement(context, MaterialPageRoute(
                     builder: (context) {
-                      return HomePage();
+                      return const HomePage();
                     },
                   ));
                 },

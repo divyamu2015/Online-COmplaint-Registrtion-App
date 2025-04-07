@@ -59,19 +59,16 @@ class _LoginPageState extends State<LoginPage> {
       if (response.message == "User Login successful") {
         emailController.clear();
         passController.clear();
-        userId = response.id; // ✅ No need to check for null
+        int userId = response.id;
 
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setInt('id', userId!);
-        print("User ID stored in SharedPreferences: $userId");
+        await storeUserId(userId); // Store user ID in SharedPreferences
+
         if (mounted) {
           showSuccess('Login successful!');
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => HomePage(
-                userId: userId!,
-              ),
+              builder: (context) => HomePage(userId: userId),
             ),
           );
         }
@@ -88,7 +85,20 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void showError(String message) {
+  /// ✅ Store User ID in SharedPreferences
+  Future<void> storeUserId(int userId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('id', userId);
+    print("User ID stored in SharedPreferences: $userId");
+  }
+
+  /// ✅ Retrieve User ID from SharedPreferences
+  Future<int?> getUserId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int? userId = prefs.getInt('id');
+    print("Retrieved User ID: $userId");
+    return userId;
+  } void showError(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text(message), backgroundColor: Colors.red),
     );
@@ -323,7 +333,6 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ],
         ),
-      ),
-    ));
-  }
+      ),));
+}
 }

@@ -110,11 +110,11 @@ Join us in making a difference—because every complaint counts!''',
                           onPressed: () {
                             Navigator.push(context, MaterialPageRoute(
                               builder: (context) {
-                                return HomePage();
+                                return const HomePage();
                               },
                             ));
                           },
-                          child: Text(
+                          child: const Text(
                             'BACK',
                             style: TextStyle(color: Colors.white),
                           )),

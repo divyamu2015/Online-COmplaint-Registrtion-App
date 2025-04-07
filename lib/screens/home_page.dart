@@ -133,7 +133,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             child: Padding(
               padding: const EdgeInsets.only(top: 100),
               child: Center(
@@ -149,7 +149,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisSpacing: 10,
                         shrinkWrap: true, // Prevents unnecessary space
                         physics:
-                            NeverScrollableScrollPhysics(), // Prevents double scrolling
+                            const NeverScrollableScrollPhysics(), // Prevents double scrolling
 
                         children: [
                           MouseRegion(

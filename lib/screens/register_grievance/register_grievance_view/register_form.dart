@@ -42,7 +42,7 @@ class _ComplaintRegistrationState extends State<ComplaintRegistration> {
 
   File? _image;
   // final ImagePicker _picker = ImagePicker();
-  stt.SpeechToText _speech = stt.SpeechToText();
+  final stt.SpeechToText _speech = stt.SpeechToText();
   bool _isListening = false;
 
   // Existing code...
@@ -447,6 +447,12 @@ class _ComplaintRegistrationState extends State<ComplaintRegistration> {
                       const SizedBox(height: 15.0),
 
                       TextFormField(
+                         validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please fill this field';
+                          }
+                          return null;
+                        },
                         keyboardType: TextInputType.emailAddress,
                         controller: email,
                         decoration: InputDecoration(
@@ -487,6 +493,12 @@ class _ComplaintRegistrationState extends State<ComplaintRegistration> {
                       const SizedBox(height: 15.0),
 
                       TextFormField(
+                         validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please fill this field';
+                          }
+                          return null;
+                        },
                         keyboardType: TextInputType.multiline,
                         maxLines: 3,
                         controller: place,

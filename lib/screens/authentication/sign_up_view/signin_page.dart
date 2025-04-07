@@ -146,119 +146,6 @@ class _SignUppageState extends State<SignUppage> {
                           ),
                           const SizedBox(height: 10),
 
-                          // Address Field
-                          // TextFormField(
-                          //   controller: addressController,
-                          //   maxLines: 3,
-                          //   validator: (value) {
-                          //     if (value == null || value.isEmpty) {
-                          //       return 'Please fill the Field';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   decoration: inputDecoration(
-                          //       'Address', Icons.info_outline_rounded),
-                          // ),
-                          // const SizedBox(height: 10),
-
-                          // Phone Field
-                          // TextFormField(
-                          //   controller: phoneController,
-                          //   keyboardType: TextInputType.number,
-                          //   validator: (value) {
-                          //     if (value == null || value.isEmpty) {
-                          //       return 'Please enter a phone number';
-                          //     }
-                          //     if (!RegExp(r'^\d{10}$').hasMatch(value)) {
-                          //       return 'Invalid phone number. It should be exactly 10 digits.';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   decoration:
-                          //       inputDecoration('Phone Number', Icons.phone),
-                          // ),
-                          // const SizedBox(height: 10),
-                          // TextFormField(
-                          //   controller: nameController,
-                          //   keyboardType: TextInputType.name,
-                          //   validator: (value) {
-                          //     if (value == null || value.isEmpty) {
-                          //       return 'Please fill the Field';
-                          //     }
-                          //     if (value.length < 3) return 'Name too Short';
-                          //     if (!RegExp(r"^[a-zA-Z ]+$").hasMatch(value)) {
-                          //       return 'Enter a valid Name (letters only)';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   decoration: inputDecoration('Age', Icons.date_range),
-                          // ),
-                          // const SizedBox(height: 10),
-                          // TextFormField(
-                          //   controller: nameController,
-                          //   keyboardType: TextInputType.name,
-                          //   validator: (value) {
-                          //     if (value == null || value.isEmpty) {
-                          //       return 'Please fill the Field';
-                          //     }
-                          //     if (value.length < 3) return 'Name too Short';
-                          //     if (!RegExp(r"^[a-zA-Z ]+$").hasMatch(value)) {
-                          //       return 'Enter a valid Name (letters only)';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   decoration: inputDecoration(
-                          //       'Aadhaar Card No', Icons.person_outline_outlined),
-                          // ),
-                          // const SizedBox(height: 10),
-                          // // Place Field
-                          // TextFormField(
-                          //   controller: placeController,
-                          //   decoration: inputDecoration('Place', Icons.place),
-                          // ),
-                          // const SizedBox(height: 10),
-
-                          // Padding(
-                          //   padding: const EdgeInsets.all(16.0),
-                          //   child: Wrap(
-                          //     alignment: WrapAlignment.start,
-                          //     crossAxisAlignment: WrapCrossAlignment.center,
-                          //     spacing: 10,
-                          //     runSpacing: 5,
-                          //     children: [
-                          //       const Text('Gender',
-                          //           style: TextStyle(fontSize: 16)),
-                          //       RadioListTile<String>(
-                          //         title: const Text('Male'),
-                          //         value: 'Male',
-                          //         groupValue: gender,
-                          //         onChanged: (value) {
-                          //           setState(() {
-                          //             gender = value;
-                          //           });
-                          //         },
-                          //       ),
-                          //       RadioListTile<String>(
-                          //         title: const Text('Female'),
-                          //         value: 'Female',
-                          //         groupValue: gender,
-                          //         onChanged: (value) {
-                          //           setState(() {
-                          //             gender = value;
-                          //           });
-                          //         },
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-
-                          // const SizedBox(height: 20),
-
-                          // Ward Selection with Refresh Button
-
-                          // const SizedBox(height: 10),
-
-                          // Email Field
                           TextFormField(
                             controller: emailController,
                             keyboardType: TextInputType.emailAddress,
@@ -281,6 +168,12 @@ class _SignUppageState extends State<SignUppage> {
 
                           // Password Field
                           TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please fill this field';
+                              }
+                              return null;
+                            },
                             keyboardType: TextInputType.visiblePassword,
                             controller: passController,
                             // obscureText: true,
